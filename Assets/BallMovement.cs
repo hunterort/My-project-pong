@@ -106,16 +106,14 @@ public class BallMovement : MonoBehaviour
         else if (collision.gameObject.CompareTag("WallLeftTag"))
         {
             Debug.Log("Player two scored!!");
-           //Destroy(myBall);
+            RestartBall();
         }
 
         else if (collision.gameObject.CompareTag("WallRightTag"))
         {
             Debug.Log("Player one scored!!");
+            RestartBall();
         }
-
-
-
 
     }
     private void ApplyUpdatedSpeed()
@@ -131,5 +129,16 @@ public class BallMovement : MonoBehaviour
         // Apply it
         myBall.linearVelocity = direction * currentTotalSpeed;
         Debug.Log("New Game Speed: " + currentTotalSpeed);
+    }
+
+    private void RestartBall()
+    {
+        if (GameSpeedManager.Instance != null)
+        {
+            GameSpeedManager.Instance.ResetSpeed();
+        }
+
+        myBall.linearVelocity = Vector2.zero;
+        LaunchBall();
     }
 }
