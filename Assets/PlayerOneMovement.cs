@@ -9,6 +9,8 @@ public class PlayerOneMovement : MonoBehaviour
     private int paddleDirection = 0;
     public float paddleXPosition;
     public float paddleYPosition;
+    public int paddleHitNumber = 0;
+    public static PlayerOneMovement Instance { get; private set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,8 +39,5 @@ public class PlayerOneMovement : MonoBehaviour
         myPlayerOnePaddle.linearVelocity = paddleMovementVector;
         //transform.Translate(paddleMovementVector);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Playerone collided with: " + collision.gameObject.name);
-    }
+
 }
