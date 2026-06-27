@@ -49,7 +49,7 @@ public class BallMovement : MonoBehaviour
         //{
         //    Destroy(myBall);
         //}
-        if (collision.gameObject.CompareTag("PaddlePlayerOneTag")|| collision.gameObject.CompareTag("PaddlePlayerTwoTag") )
+        if (collision.gameObject.CompareTag("PaddlePlayerOneTag") || collision.gameObject.CompareTag("PaddlePlayerTwoTag"))
         {
             float ballYPosition = transform.position.y;
             Debug.Log("ballyPosition " + ballYPosition);
@@ -71,12 +71,11 @@ public class BallMovement : MonoBehaviour
                 xDirection = 1f;
             }
 
-            Vector2 ballVector = new Vector2(xDirection*speed, hitPointY*speed);
+            Vector2 ballVector = new Vector2(xDirection * speed, hitPointY * speed);
 
             myBall.linearVelocity = ballVector;
             //// 🚀 CALLING FROM ANOTHER SCRIPT: One simple line!
 
-            Debug.Log("HELLLLLLLLLLLLLLLLO");
             GameSpeedManager.Instance.IncreaseGameSpeed();
 
             // Immediately apply the newly updated speed to this ball's velocity
@@ -84,7 +83,7 @@ public class BallMovement : MonoBehaviour
         }
 
         //|| collision.gameObject.CompareTag("WallBottomTag")
-        else if (collision.gameObject.CompareTag("WallTopTag") )
+        else if (collision.gameObject.CompareTag("WallTopTag"))
         {
             //Debug.Log("collision " + collision.gameObject.name);
             //Debug.Log("x " + myBall.linearVelocity.x);
@@ -104,15 +103,17 @@ public class BallMovement : MonoBehaviour
             myBall.linearVelocity = ballVector;
         }
 
-        if (collision.gameObject.CompareTag("WallLeftTag"))
+        else if (collision.gameObject.CompareTag("WallLeftTag"))
         {
             Debug.Log("Player two scored!!");
+           //Destroy(myBall);
         }
 
-        if (collision.gameObject.CompareTag("WallRightTag"))
+        else if (collision.gameObject.CompareTag("WallRightTag"))
         {
             Debug.Log("Player one scored!!");
         }
+
 
 
 

@@ -8,6 +8,8 @@ TagManager:
   - WallTopTag
   - WallBottomTag
   - PaddlePlayerTwoTag
+  - WallLeftTag
+  - WallRightTag
   layers:
   - Default
   - TransparentFX
