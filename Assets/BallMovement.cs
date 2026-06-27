@@ -10,8 +10,9 @@ public class BallMovement : MonoBehaviour
     private Rigidbody2D myBall;
     public float ballYPosition;
     public float ballXPosition;
-
-    //GameSpeedManager speedManager;
+    private GameSpeedManager speedManager;
+    private ScoreKeeper scoreKeeper;
+    
 
 
     
@@ -19,6 +20,8 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
         myBall = GetComponent<Rigidbody2D>();
+        speedManager = GameSpeedManager.Instance;
+        scoreKeeper = ScoreKeeper.Instance;
         LaunchBall();
     }
     void Update() 
@@ -30,8 +33,11 @@ public class BallMovement : MonoBehaviour
 
     void LaunchBall()
     {
-            
-        
+
+        //Debug.Log("Game started.... waiting for 3 seconds.");
+        //yield return new WaitForSeconds(3f);
+
+
         transform.position = Vector2.zero;
 
         // Launch horizontally to start (either left or right)
@@ -43,7 +49,7 @@ public class BallMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Object Collision: " + collision.gameObject.name);
+        //Debug.Log("Object Collision: " + collision.gameObject.name);
         // Ensure we are bouncing off a paddle
         //if (collision.gameObject.CompareTag("PaddlePlayerOneTag"))
         //{
@@ -52,7 +58,7 @@ public class BallMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("PaddlePlayerOneTag") || collision.gameObject.CompareTag("PaddlePlayerTwoTag"))
         {
             float ballYPosition = transform.position.y;
-            Debug.Log("ballyPosition " + ballYPosition);
+            //Debug.Log("ballyPosition " + ballYPosition);
             float paddlePosition = collision.transform.position.y;
             // Debug.Log("paddlePosition " + paddlePosition);
             float paddleHeight = collision.collider.bounds.size.y;
@@ -76,14 +82,15 @@ public class BallMovement : MonoBehaviour
             myBall.linearVelocity = ballVector;
             //// 🚀 CALLING FROM ANOTHER SCRIPT: One simple line!
 
-            GameSpeedManager.Instance.IncreaseGameSpeed();
+
+            speedManager.IncreaseGameSpeed();
 
             // Immediately apply the newly updated speed to this ball's velocity
             ApplyUpdatedSpeed();
         }
 
         //|| collision.gameObject.CompareTag("WallBottomTag")
-        else if (collision.gameObject.CompareTag("WallTopTag"))
+        else if (collision.gameObject.CompareTag("WallTopTag") || collision.gameObject.CompareTag("WallBottomTag"))
         {
             //Debug.Log("collision " + collision.gameObject.name);
             //Debug.Log("x " + myBall.linearVelocity.x);
@@ -105,13 +112,17 @@ public class BallMovement : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("WallLeftTag"))
         {
-            Debug.Log("Player two scored!!");
+            scoreKeeper.UpdateScorePlayerTwo();
+            //Debug.Log("Player two scored!!");
+            
             RestartBall();
+            
         }
 
         else if (collision.gameObject.CompareTag("WallRightTag"))
         {
-            Debug.Log("Player one scored!!");
+            //Debug.Log("Player one scored!!");
+            scoreKeeper.UpdateScorePlayerOne();
             RestartBall();
         }
 
@@ -124,18 +135,18 @@ public class BallMovement : MonoBehaviour
 
         // Calculate new speed: Base Speed + the Modifier from our Manager
 
-        float currentTotalSpeed = speed + GameSpeedManager.Instance.ExtraSpeedModifier;
+        float currentTotalSpeed = speed + speedManager.ExtraSpeedModifier;
 
         // Apply it
         myBall.linearVelocity = direction * currentTotalSpeed;
-        Debug.Log("New Game Speed: " + currentTotalSpeed);
+        //Debug.Log("New Game Speed: " + currentTotalSpeed);
     }
 
     private void RestartBall()
     {
-        if (GameSpeedManager.Instance != null)
+        if (speedManager != null)
         {
-            GameSpeedManager.Instance.ResetSpeed();
+            speedManager.ResetSpeed();
         }
 
         myBall.linearVelocity = Vector2.zero;

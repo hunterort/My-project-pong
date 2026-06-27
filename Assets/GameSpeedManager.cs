@@ -30,7 +30,8 @@ public class GameSpeedManager : MonoBehaviour
     {
         
         ExtraSpeedModifier += speedIncrement;
-        Debug.Log($"Ball hit! Current Extra Speed: {ExtraSpeedModifier}");
+        //Debug.Log($"Ball hit! Current Extra Speed: {ExtraSpeedModifier}");
+
     }
 
     // Call this when a point is scored to reset the rally speed

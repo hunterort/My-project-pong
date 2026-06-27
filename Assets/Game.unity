@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1674130e55d65914a9f6ff2ecce7111c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  paddleSpeed: 50
+  paddleSpeed: 500
 --- !u!61 &613088717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -868,6 +868,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
+--- !u!1 &974236284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974236286}
+  - component: {fileID: 974236285}
+  m_Layer: 0
+  m_Name: ScoreKeeper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &974236285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974236284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9bff5a24f2cac2448ddaa863a948ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  score: 0
+  myPlayerOneScore: {fileID: 1557350044}
+  myPlayerTwoScore: {fileID: 71802935}
+--- !u!4 &974236286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974236284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -98.49787, y: 80.07111, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1183244190
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfa33fbbbf2e024d8926567905ac524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSpeedManager
-  speedIncrement: 20
+  speedIncrement: 200
 --- !u!4 &1183244192
 Transform:
   m_ObjectHideFlags: 0
@@ -2305,6 +2352,7 @@ SceneRoots:
   - {fileID: 1459687129}
   - {fileID: 1673477727}
   - {fileID: 1545366490}
-  - {fileID: 1183244192}
   - {fileID: 1631487423}
   - {fileID: 188975529}
+  - {fileID: 974236286}
+  - {fileID: 1183244192}
