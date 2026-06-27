@@ -11,6 +11,9 @@ public class BallMovement : MonoBehaviour
     public float ballYPosition;
     public float ballXPosition;
 
+    //GameSpeedManager speedManager;
+
+
     
 
     void Start()
@@ -46,16 +49,15 @@ public class BallMovement : MonoBehaviour
         //{
         //    Destroy(myBall);
         //}
-        if (collision.gameObject.CompareTag("PaddlePlayerOneTag") || collision.gameObject.CompareTag("PaddlePlayerTwoTag") )
+        if (collision.gameObject.CompareTag("PaddlePlayerOneTag")|| collision.gameObject.CompareTag("PaddlePlayerTwoTag") )
         {
             float ballYPosition = transform.position.y;
-            //Debug.Log("ballyPosition " + ballYPosition);
+            Debug.Log("ballyPosition " + ballYPosition);
             float paddlePosition = collision.transform.position.y;
-            //Debug.Log("paddlePosition " + paddlePosition);
+            // Debug.Log("paddlePosition " + paddlePosition);
             float paddleHeight = collision.collider.bounds.size.y;
             //Debug.Log("paddleHeight" + paddleHeight);
             float hitPointY = (ballYPosition - paddlePosition) / paddleHeight;
-
             //Debug.Log("(ballYPosition - paddlePosition) / paddleHeight " + hitPointY);
 
             //float xDirection = (myBall.linearVelocity.x > 0f) ? -1f : 1f;
@@ -71,9 +73,11 @@ public class BallMovement : MonoBehaviour
 
             Vector2 ballVector = new Vector2(xDirection*speed, hitPointY*speed);
 
-            //myBall.linearVelocity = ballVector;
+            myBall.linearVelocity = ballVector;
             //// 🚀 CALLING FROM ANOTHER SCRIPT: One simple line!
-            //GameSpeedManager.Instance.IncreaseGameSpeed();
+
+            Debug.Log("HELLLLLLLLLLLLLLLLO");
+            GameSpeedManager.Instance.IncreaseGameSpeed();
 
             // Immediately apply the newly updated speed to this ball's velocity
             ApplyUpdatedSpeed();
@@ -100,21 +104,31 @@ public class BallMovement : MonoBehaviour
             myBall.linearVelocity = ballVector;
         }
 
+        if (collision.gameObject.CompareTag("WallLeftTag"))
+        {
+            Debug.Log("Player two scored!!");
+        }
+
+        if (collision.gameObject.CompareTag("WallRightTag"))
+        {
+            Debug.Log("Player one scored!!");
+        }
+
 
 
     }
     private void ApplyUpdatedSpeed()
     {
 
-        //// Get the direction the ball is already traveling
-        //Vector2 direction = myBall.linearVelocity.normalized;
+        // Get the direction the ball is already traveling
+        Vector2 direction = myBall.linearVelocity.normalized;
 
-        //// Calculate new speed: Base Speed + the Modifier from our Manager
-        //float baseSpeed = 10f;
-        //// float currentTotalSpeed = baseSpeed + GameSpeedManager.Instance.ExtraSpeedModifier;
+        // Calculate new speed: Base Speed + the Modifier from our Manager
 
-        //// Apply it
-        //myBall.linearVelocity = direction * currentTotalSpeed;
-        //Debug.Log("New Game Speed: " + currentTotalSpeed);
+        float currentTotalSpeed = speed + GameSpeedManager.Instance.ExtraSpeedModifier;
+
+        // Apply it
+        myBall.linearVelocity = direction * currentTotalSpeed;
+        Debug.Log("New Game Speed: " + currentTotalSpeed);
     }
 }

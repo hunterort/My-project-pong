@@ -7,7 +7,7 @@ public class GameSpeedManager : MonoBehaviour
 
     [Header("Speed Settings")]
     [Tooltip("How much speed is added to the ball on every paddle hit")]
-    public float speedIncrement = 0.5f;
+    public float speedIncrement = .5f;
 
     // This is the public variable other scripts will read
     public float ExtraSpeedModifier { get; private set; } = 0f;
@@ -28,6 +28,7 @@ public class GameSpeedManager : MonoBehaviour
     // Public method that other scripts can call to increase the speed
     public void IncreaseGameSpeed()
     {
+        
         ExtraSpeedModifier += speedIncrement;
         Debug.Log($"Ball hit! Current Extra Speed: {ExtraSpeedModifier}");
     }
