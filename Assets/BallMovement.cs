@@ -106,14 +106,14 @@ public class BallMovement : MonoBehaviour
     private void ApplyUpdatedSpeed()
     {
 
-        // Get the direction the ball is already traveling
-        Vector2 direction = myBall.linearVelocity.normalized;
+        //// Get the direction the ball is already traveling
+        //Vector2 direction = myBall.linearVelocity.normalized;
 
-        // Calculate new speed: Base Speed + the Modifier from our Manager
-        float baseSpeed = 10f;
-        // float currentTotalSpeed = baseSpeed + GameSpeedManager.Instance.ExtraSpeedModifier;
+        //// Calculate new speed: Base Speed + the Modifier from our Manager
+        //float baseSpeed = 10f;
+        //// float currentTotalSpeed = baseSpeed + GameSpeedManager.Instance.ExtraSpeedModifier;
 
-        // Apply it
+        //// Apply it
         //myBall.linearVelocity = direction * currentTotalSpeed;
         //Debug.Log("New Game Speed: " + currentTotalSpeed);
     }
