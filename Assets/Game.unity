@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1674130e55d65914a9f6ff2ecce7111c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  paddleSpeed: 500
+  paddleSpeed: 150
 --- !u!61 &613088717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -900,6 +900,9 @@ MonoBehaviour:
   score: 0
   myPlayerOneScore: {fileID: 1557350044}
   myPlayerTwoScore: {fileID: 71802935}
+  whoWon: {fileID: 0}
+  playerOneName: Player One
+  playerTwoName: Player Two
 --- !u!4 &974236286
 Transform:
   m_ObjectHideFlags: 0
